@@ -10,24 +10,26 @@ import { Suspense } from 'react';
 
 export const SharedLayout = () => {
   return (
-    <Container>
+    <>
       <Header>
         <nav>
           <Link to="/" end>
             Home
           </Link>
-          <Link to="/movies">Movies</Link>
+          <Link to="/tweets">Tweets</Link>
         </nav>
       </Header>
-      <Suspense
-      // fallback={
-      // //   <Layout>
-      // //     <RotatingLines strokeColor="grey" strokeWidth="3" width="77" />
-      // //   </Layout>
-      // }
-      >
-        <Outlet />
-      </Suspense>
-    </Container>
+      <Container>
+        <Suspense
+        // fallback={
+        // //   <Layout>
+        // //     <RotatingLines strokeColor="grey" strokeWidth="3" width="77" />
+        // //   </Layout>
+        // }
+        >
+          <Outlet />
+        </Suspense>
+      </Container>
+    </>
   );
 };

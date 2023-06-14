@@ -1,5 +1,8 @@
+import tweets from '../users.json';
+import { TweetList } from 'components/TweetList/TweetList';
+
 const Tweets = () => {
-  return <div>Tweets</div>;
+  return <TweetList tweets={tweets} />;
 };
 
 export default Tweets;

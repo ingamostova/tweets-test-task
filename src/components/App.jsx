@@ -7,21 +7,10 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route path="/" element={Home} />
-        <Route path="/tweets" element={Tweets} />
+        <Route index element={<Home />} />
+        <Route path="/tweets" element={<Tweets />} />
+        <Route path="*" element={<Home />} />
       </Route>
     </Routes>
-    // <div
-    //   style={{
-    //     height: '100vh',
-    //     display: 'flex',
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    //     fontSize: 40,
-    //     color: '#010101',
-    //   }}
-    // >
-    //   React homework template
-    // </div>
   );
 };
