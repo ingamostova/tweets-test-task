@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Item,
   ContainerTop,
@@ -12,6 +13,20 @@ import {
 import Logo from '../../images/Vector.svg';
 
 export const Tweet = ({ item: { id, user, avatar, followers, tweets } }) => {
+  const [quantity, setQuantity] = useState(followers);
+  const [isActiveBtn, setIsActiveBtn] = useState(false);
+
+  const handleClick = () => {
+    if (isActiveBtn) {
+      setQuantity(prevState => (prevState -= 1));
+      setIsActiveBtn(false);
+      return;
+    }
+    setQuantity(prevState => (prevState += 1));
+    setIsActiveBtn(true);
+    return;
+  };
+
   return (
     <Item>
       <Container>
@@ -21,15 +36,15 @@ export const Tweet = ({ item: { id, user, avatar, followers, tweets } }) => {
       </Container>
       <ContainerBottom>
         <Avatar src={avatar} alt="" />
-        {/* <h2>{user}</h2> */}
-        {/* <img src={avatar} alt={user} width={260} height={260} /> */}
         <InfoContainer>
           {' '}
           <Info>{user}</Info>
           <Info>{tweets} tweets</Info>
-          <Info>{followers} followers</Info>
+          <Info>{quantity} followers</Info>
         </InfoContainer>
-        <Btn>follow</Btn>
+        <Btn isActive={isActiveBtn} onClick={handleClick}>
+          {!isActiveBtn ? 'follow' : 'following'}
+        </Btn>
       </ContainerBottom>
     </Item>
   );

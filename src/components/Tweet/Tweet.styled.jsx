@@ -65,7 +65,7 @@ export const Info = styled.p`
 export const Btn = styled.button`
   width: 196px;
   height: 50px;
-  background-color: #ebd8ff;
+  background-color: ${({ isActive }) => (isActive ? '#5CD3A8' : '#ebd8ff')};
   box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
   border-radius: 10.3108px;
   border: none;
@@ -79,6 +79,10 @@ export const Btn = styled.button`
   text-transform: uppercase;
 
   color: #373737;
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const Avatar = styled.img`
