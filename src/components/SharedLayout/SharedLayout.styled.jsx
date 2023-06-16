@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 export const Container = styled.div`
   margin: 0 auto;
   padding: 32px 16px;
+  /* text-align: center; */
 
   /* @media screen and (min-width: 768px) {
     width: 704px;
@@ -19,7 +20,7 @@ export const Header = styled.header`
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 8px 0;
+  padding: 8px 16px;
   border: 1px solid black;
   background: linear-gradient(
     114.99deg,
