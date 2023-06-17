@@ -19,7 +19,6 @@ export const Container = styled.div`
   position: relative;
   border-bottom: 8px solid #ebd8ff;
   padding: 28px 36px 18px;
-  /* height: 214px; */
 `;
 
 export const ContainerTop = styled.div`
@@ -28,14 +27,11 @@ export const ContainerTop = styled.div`
   background-size: cover;
   width: 308px;
   height: 168px;
-  /* padding: 28px 36px 18px; */
 `;
 
 export const ContainerBottom = styled.div`
-  /* height: 238px; */
   text-align: center;
   padding-top: 54px;
-  /* padding-bottom: 36px; */
 `;
 
 export const Image = styled.img`

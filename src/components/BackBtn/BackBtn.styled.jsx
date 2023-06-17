@@ -15,7 +15,6 @@ export const Btn = styled(Link)`
   margin-bottom: 16px;
   transition: all 300ms ease-out;
   :hover {
-    /* background-color: #303f9f; */
     background: linear-gradient(
       114.99deg,
       #471ca9 -0.99%,

@@ -24,7 +24,6 @@ export const Btn = styled.button`
     0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
   transition: all 300ms ease-out;
   :hover {
-    /* background-color: #303f9f; */
     background: linear-gradient(
       114.99deg,
       #471ca9 -0.99%,

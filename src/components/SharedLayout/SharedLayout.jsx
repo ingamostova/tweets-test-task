@@ -2,11 +2,9 @@ import {
   Container,
   Header,
   Link,
-  //   Layout,
 } from 'components/SharedLayout/SharedLayout.styled';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Suspense } from 'react';
-// import { RotatingLines } from 'react-loader-spinner';
 
 export const SharedLayout = () => {
   const location = useLocation();
@@ -23,13 +21,7 @@ export const SharedLayout = () => {
         </nav>
       </Header>
       <Container>
-        <Suspense
-        // fallback={
-        // //   <Layout>
-        // //     <RotatingLines strokeColor="grey" strokeWidth="3" width="77" />
-        // //   </Layout>
-        // }
-        >
+        <Suspense>
           <Outlet />
         </Suspense>
       </Container>

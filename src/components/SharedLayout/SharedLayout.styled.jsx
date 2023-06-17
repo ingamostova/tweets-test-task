@@ -4,15 +4,6 @@ import { NavLink } from 'react-router-dom';
 export const Container = styled.div`
   margin: 0 auto;
   padding: 32px 16px;
-  /* text-align: center; */
-
-  /* @media screen and (min-width: 768px) {
-    width: 704px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 1248px;
-  } */
 `;
 
 export const Header = styled.header`
@@ -52,10 +43,4 @@ export const Link = styled(NavLink)`
     color: #373737;
     background-color: #ebd8ff;
   }
-`;
-
-export const Layout = styled.div`
-  text-align: center;
-  margin-top: 16px;
-  margin-bottom: 16px;
 `;

@@ -1,4 +1,3 @@
-// import tweets from '../users.json';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { TweetList } from 'components/TweetList/TweetList';
@@ -8,20 +7,22 @@ import { BackBtn } from 'components/BackBtn/BackBtn';
 import { Dropdown } from 'components/Dropdown/Dropdown';
 
 const Tweets = () => {
-  // const [error, setError] = useState(null);
   const [tweets, setTweets] = useState([]);
-  const [displayedTweets, setDisplayedTweets] = useState([]);
-  const [startIndex, setStartIndex] = useState(0);
-  const tweetsPerPage = 4;
+  const [selectedTweets, setSelectedTweets] = useState(
+    () => JSON.parse(window.localStorage.getItem('selectedTweets')) ?? []
+  );
+  const [selectedFilter, setSelectedFilter] = useState('all');
+  const tweetsPerPage = 6;
+  const [visibleTweetsCount, setVisibleTweetsCount] = useState(tweetsPerPage);
 
   const location = useLocation();
 
   useEffect(() => {
+    localStorage.setItem('selectedTweets', JSON.stringify(selectedTweets));
     async function getTweets() {
       try {
         const data = await fetchTweets();
         setTweets(data);
-        setDisplayedTweets(data.slice(startIndex, startIndex + tweetsPerPage));
       } catch (error) {
         console.log(error);
       }
@@ -29,28 +30,53 @@ const Tweets = () => {
 
     getTweets();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selectedTweets]);
 
-  const loadMoreTweets = () => {
-    const newIndex = startIndex + tweetsPerPage;
-    setDisplayedTweets(prevState => [
-      ...prevState,
-      ...tweets.slice(prevState.length, newIndex + tweetsPerPage),
-    ]);
-    setStartIndex(newIndex);
+  const handleFollowToggle = (tweetId, isFollowed) => {
+    if (isFollowed) {
+      setSelectedTweets(prevState => [...prevState, tweetId]);
+    } else {
+      setSelectedTweets(prevState =>
+        prevState.filter(idTweet => idTweet !== tweetId)
+      );
+    }
   };
+
+  const handleLoadMore = () => {
+    setVisibleTweetsCount(prevCount => prevCount + tweetsPerPage);
+  };
+
+  const handleFilterChange = event => {
+    setSelectedFilter(event.target.value);
+  };
+
+  const filteredTweets =
+    selectedFilter === 'all'
+      ? tweets
+      : selectedFilter === 'following'
+      ? tweets.filter(tweet => selectedTweets.includes(tweet.id))
+      : selectedFilter === 'follow'
+      ? tweets.filter(tweet => !selectedTweets.includes(tweet.id))
+      : [];
 
   return (
     <>
-      {/* <Link to={location.state.from}>Back</Link> */}
-      <BackBtn to={location.state.from} />
-      <Dropdown />
+      <BackBtn to={location.state.from} />{' '}
+      {tweets && (
+        <Dropdown
+          selectedFilter={selectedFilter}
+          onChange={handleFilterChange}
+        />
+      )}
       <div style={{ textAlign: 'center' }}>
-        <TweetList tweets={displayedTweets} />
-        {displayedTweets.length > 0 &&
-          displayedTweets.length !== tweets.length && (
-            <LoadMore onClick={loadMoreTweets} />
-          )}
+        <TweetList
+          tweets={filteredTweets.slice(0, visibleTweetsCount)}
+          activeFollowers={selectedTweets}
+          onFollowToggle={handleFollowToggle}
+        />
+        {visibleTweetsCount < filteredTweets.length && (
+          <LoadMore onClick={handleLoadMore} />
+        )}
       </div>
     </>
   );
