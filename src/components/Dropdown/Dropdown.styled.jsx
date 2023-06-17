@@ -13,6 +13,7 @@ export const Select = styled.select`
   text-align: center;
   margin: 0 auto;
   transition: all 300ms ease-out;
+  border: none;
 
   :hover {
     background: linear-gradient(
