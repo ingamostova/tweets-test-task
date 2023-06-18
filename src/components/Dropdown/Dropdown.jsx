@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Container, Select } from './Dropdown.styled';
 
 export const Dropdown = ({ selectedFilter, onChange }) => {
@@ -10,4 +11,9 @@ export const Dropdown = ({ selectedFilter, onChange }) => {
       </Select>
     </Container>
   );
+};
+
+Dropdown.propTypes = {
+  selectedFilter: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Item,
   ContainerTop,
@@ -55,4 +56,16 @@ export const Tweet = ({
       </ContainerBottom>
     </Item>
   );
+};
+
+Tweet.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    user: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+    followers: PropTypes.number.isRequired,
+    tweets: PropTypes.number.isRequired,
+  }),
+  onFollowToggle: PropTypes.func.isRequired,
+  activeFollowers: PropTypes.arrayOf(PropTypes.string.isRequired),
 };

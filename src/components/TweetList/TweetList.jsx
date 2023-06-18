@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Tweet } from 'components/Tweet/Tweet';
 import { List } from './TweetList.styled';
 
@@ -14,4 +15,14 @@ export const TweetList = ({ tweets, onFollowToggle, activeFollowers }) => {
       ))}
     </List>
   );
+};
+
+TweetList.propTypes = {
+  tweets: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    })
+  ),
+  onFollowToggle: PropTypes.func.isRequired,
+  activeFollowers: PropTypes.arrayOf(PropTypes.string.isRequired),
 };
